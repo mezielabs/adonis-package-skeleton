@@ -1,0 +1,140 @@
+{
+  "name": "skeleton",
+  "version": "0.0.0",
+  "description": "A skeleton repository for creating AdonisJS packages",
+  "main": "build/providers/SkeletonProvider.js",
+  "scripts": {
+    "mrm": "mrm --preset=@adonisjs/mrm-preset",
+    "pretest": "npm run lint",
+    "clean": "del-cli build",
+    "copyfiles": "copyfiles \"templates/**/*.txt\" \"instructions.md\" build",
+    "compile": "npm run lint && npm run clean && tsc && npm run copyfiles",
+    "build": "npm run compile",
+    "prepublishOnly": "npm run build",
+    "lint": "eslint . --ext=.ts",
+    "format": "prettier --write .",
+    "commit": "git-cz",
+    "release": "np --message=\"chore(release): %s\"",
+    "version": "npm run build",
+    "sync-labels": "github-label-sync --labels ./node_modules/@adonisjs/mrm-preset/gh-labels.json {owner}/{skeleton}"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/{owner}/{skeleton}.git"
+  },
+  "homepage": "https://github.com/{owner}/{skeleton}#readme",
+  "keywords": [
+    "adonisjs",
+    "adonis"
+  ],
+  "author": "Author name",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/{owner}/{skeleton}/issues"
+  },
+  "devDependencies": {
+    "@adonisjs/core": "^5.8.4",
+    "@adonisjs/mrm-preset": "^5.0.3",
+    "@adonisjs/require-ts": "^2.0.12",
+    "@adonisjs/sink": "^5.4.0",
+    "@types/node": "^18.0.3",
+    "commitizen": "^4.2.4",
+    "copyfiles": "^2.4.1",
+    "cz-conventional-changelog": "^3.3.0",
+    "del-cli": "^4.0.1",
+    "eslint": "^8.19.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-adonis": "^2.1.0",
+    "eslint-plugin-prettier": "^4.2.1",
+    "github-label-sync": "^2.2.0",
+    "husky": "^8.0.1",
+    "mrm": "^4.0.0",
+    "np": "^7.6.2",
+    "prettier": "^2.7.1",
+    "typescript": "^4.7.4"
+  },
+  "peerDependencies": {
+    "@adonisjs/core": "^5.8.4"
+  },
+  "mrmConfig": {
+    "core": false,
+    "license": "MIT",
+    "services": [],
+    "minNodeVersion": "16.13.1",
+    "probotApps": []
+  },
+  "types": "build/adonis-typings/index.d.ts",
+  "files": [
+    "build/adonis-typings",
+    "build/src",
+    "build/providers",
+    "build/templates",
+    "build/instructions.js",
+    "build/instructions.md"
+  ],
+  "eslintConfig": {
+    "extends": [
+      "plugin:adonis/typescriptPackage",
+      "prettier"
+    ],
+    "plugins": [
+      "prettier"
+    ],
+    "rules": {
+      "prettier/prettier": [
+        "error",
+        {
+          "endOfLine": "auto"
+        }
+      ]
+    }
+  },
+  "eslintIgnore": [
+    "build"
+  ],
+  "prettier": {
+    "trailingComma": "es5",
+    "semi": false,
+    "singleQuote": true,
+    "useTabs": false,
+    "quoteProps": "consistent",
+    "bracketSpacing": true,
+    "arrowParens": "always",
+    "printWidth": 100
+  },
+  "config": {
+    "commitizen": {
+      "path": "cz-conventional-changelog"
+    }
+  },
+  "np": {
+    "contents": ".",
+    "anyBranch": false
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "adonisjs": {
+    "instructions": "./build/instructions.js",
+    "instructionsMd": "./build/instructions.md",
+    "providers": [
+      "skeleton"
+    ],
+    "types": "skeleton",
+    "templates": {
+      "basePath": "./build/templates",
+			"config": [
+				{
+					"src": "config/skeleton.txt",
+					"dest": "skeleton"
+				}
+			],
+			"contracts": [
+				{
+					"src": "contracts/skeleton.txt",
+					"dest": "skeleton"
+				}
+			]
+    }
+  }
+}
